@@ -27,6 +27,17 @@ vim.o.list = true
 vim.o.number = true
 vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true })
 
+-- Return to last place in file on reload
+vim.api.nvim_create_autocmd("BufReadPost", {
+    callback = function()
+        local last_place = vim.fn.line("'\"")
+        local end_of_file = vim.fn.line("$")
+        if last_place > 0 and last_place < end_of_file then
+            vim.cmd.normal("'\"")
+        end
+    end
+})
+
 -- Initialize lazy.nvim
 require("lazy").setup({
     spec = {
