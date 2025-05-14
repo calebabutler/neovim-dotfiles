@@ -38,6 +38,9 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
 })
 
+-- Settings for netrw
+vim.g.netrw_liststyle = 3
+
 -- Initialize lazy.nvim
 require("lazy").setup({
     spec = {
